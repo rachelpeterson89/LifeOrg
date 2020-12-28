@@ -10,6 +10,12 @@ public class LifeOrgApplication {
 		SpringApplication.run(LifeOrgApplication.class, args);
 	}
 	
-	// Jae's branch
-
+//<<<<<<< HEAD
+//	// Jae's second push
+//=======
+//	// Jae's branch
+//
+//>>>>>>> Jae
+	// PUSH THIS TO MY BRANCH PLEASE
 }
+
