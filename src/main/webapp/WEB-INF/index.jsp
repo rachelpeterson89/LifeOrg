@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h1>This is my test index template</h1>
+	<h2>this is another thing</h2>
 </body>
 </html>
