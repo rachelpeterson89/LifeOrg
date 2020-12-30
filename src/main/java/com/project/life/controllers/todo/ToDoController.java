@@ -30,13 +30,13 @@ public class ToDoController {
 	}
 
 	@RequestMapping("/todo")
-	public String index(@ModelAttribute("toDo") ToDo toDo, HttpSession session,Model model) {
+	public String index(@ModelAttribute("toDo") ToDo toDo, HttpSession session, Model model) {
 		Long userId = (Long) session.getAttribute("userId");
 		User user = userService.findUserById(userId);
 		List<ToDo> toDos = user.getToDos();
 		Boolean isEmpty = toDos.isEmpty();
 		Integer number = toDos.size();
-		model.addAttribute("number",number);
+		model.addAttribute("number", number);
 		model.addAttribute("isEmpty", isEmpty);
 		model.addAttribute("user", user);
 		model.addAttribute("toDos", toDos);
@@ -45,7 +45,12 @@ public class ToDoController {
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String create(@ModelAttribute("toDo") ToDo toDo, HttpSession session) {
+		Long userId = (Long) session.getAttribute("userId");
+		User user = userService.findUserById(userId);
+		List<ToDo> toDos = user.getToDos();
+		toDos.add(toDo);
 		toDoService.saveToDo(toDo);
+		userService.saveUser(user);
 		return "redirect:/todo";
 	}
 
@@ -54,10 +59,11 @@ public class ToDoController {
 		ToDo toDo = toDoService.findToDoById(id);
 		List<Item> items = toDo.getItems();
 		Boolean isEmpty = items.isEmpty();
-;		Long userId = (Long) session.getAttribute("userId");
+		;
+		Long userId = (Long) session.getAttribute("userId");
 		User creator = toDo.getCreator();
 		Long creatorId = creator.getId();
-		if(userId!=creatorId) {
+		if (userId != creatorId) {
 			return "redirect:/todo";
 		}
 		model.addAttribute("isEmpty", isEmpty);
