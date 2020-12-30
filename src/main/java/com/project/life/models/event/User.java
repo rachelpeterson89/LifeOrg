@@ -1,4 +1,4 @@
-package com.project.life.event.models;
+package com.project.life.models.event;
 
 import java.util.Date;
 

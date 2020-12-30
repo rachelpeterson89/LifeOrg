@@ -1,4 +1,4 @@
-package com.project.life.event.controllers;
+package com.project.life.controllers.event;
 
 import javax.validation.Valid;
 
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.project.life.event.models.Event;
-import com.project.life.event.services.EventServ;
+import com.project.life.models.event.Event;
+import com.project.life.services.event.EventServ;
 
 @Controller
 @RequestMapping("/events")
