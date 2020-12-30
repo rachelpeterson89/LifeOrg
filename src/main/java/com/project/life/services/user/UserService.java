@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
+import com.project.life.models.todo.ToDo;
 import com.project.life.models.user.User;
 import com.project.life.repositories.user.UserRepository; 
 
@@ -58,4 +59,7 @@ public class UserService {
 	    	List<User> users = userRepository.findAll();
 	    	return users;
 	    }
+		public User saveUser(User user) {
+			return userRepository.save(user);
+		}
 }
