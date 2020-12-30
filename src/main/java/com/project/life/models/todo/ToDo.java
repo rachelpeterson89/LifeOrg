@@ -24,7 +24,7 @@ import javax.validation.constraints.Size;
 import com.project.life.models.user.User;
 
 @Entity
-@Table(name = "toDos")
+@Table(name = "todos")
 public class ToDo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
