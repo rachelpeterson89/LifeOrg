@@ -1,12 +1,12 @@
-package com.project.life.event.services;
+package com.project.life.services.event;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.project.life.event.models.Event;
-import com.project.life.event.repositories.EventRepo;
+import com.project.life.models.event.Event;
+import com.project.life.repositories.event.EventRepo;
 
 @Service
 public class EventServ {
