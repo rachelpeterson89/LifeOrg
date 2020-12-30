@@ -34,9 +34,13 @@ public class ToDoController {
 		Long userId = (Long) session.getAttribute("userId");
 		User user = userService.findUserById(userId);
 		List<ToDo> toDos = user.getToDos();
+		Boolean isEmpty = toDos.isEmpty();
+		Integer number = toDos.size();
+		model.addAttribute("number",number);
+		model.addAttribute("isEmpty", isEmpty);
 		model.addAttribute("user", user);
 		model.addAttribute("toDos", toDos);
-		return "index.jsp";
+		return "todo/index.jsp";
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
