@@ -23,30 +23,42 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import com.project.life.models.movie.Movie;
+import com.project.life.models.note.Note;
 import com.project.life.models.todo.ToDo;
 
-@Entity
 
+@Entity
 @Table(name = "users")
 public class User {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	@Email(message = "Email must be valid")
 	@NotEmpty(message="Email is required")
 	private String email;
+	
 	@Size(min = 5, message = "Password must be greater than 5 characters")
 	private String password;
+	
 	@NotEmpty(message = "Confirm Password is required")
 	@Transient
 	private String passwordConfirmation;
+	
 	@Column(updatable = false)
 	private Date createdAt;
 	private Date updatedAt;
+	
     @Size(min=1, message="First Name is required")
     private String firstName;
+    
     @NotEmpty(message="Last Name is required")
     private String lastName;
+    
+    @OneToMany(mappedBy="user", fetch=FetchType.LAZY)
+    private List<Note> notes;
+    
 	@OneToMany(mappedBy="creator",fetch=FetchType.LAZY,cascade = CascadeType.ALL)
     private List<ToDo> toDos;
     @ManyToMany(cascade = {
@@ -69,24 +81,152 @@ public class User {
 	private Boolean movieBool;
 	private Boolean transpBool;
 
+	
 	public User() {
     }
-    public String getFirstName() {
+	
+	
+	
+	
+	
+    public List<Note> getNotes() {
+		return notes;
+	}
+
+
+
+
+
+	public void setNotes(List<Note> notes) {
+		this.notes = notes;
+	}
+
+
+
+
+
+	public Boolean getWeatherBool() {
+		return weatherBool;
+	}
+
+
+
+
+
+	public void setWeatherBool(Boolean weatherBool) {
+		this.weatherBool = weatherBool;
+	}
+
+
+
+
+
+	public Boolean getToDoBool() {
+		return toDoBool;
+	}
+
+
+
+
+
+	public void setToDoBool(Boolean toDoBool) {
+		this.toDoBool = toDoBool;
+	}
+
+
+
+
+
+	public Boolean getCalendarBool() {
+		return calendarBool;
+	}
+
+
+
+
+
+	public void setCalendarBool(Boolean calendarBool) {
+		this.calendarBool = calendarBool;
+	}
+
+
+
+
+
+	public Boolean getNoteBool() {
+		return noteBool;
+	}
+
+
+
+
+
+	public void setNoteBool(Boolean noteBool) {
+		this.noteBool = noteBool;
+	}
+
+
+
+
+
+	public Boolean getMovieBool() {
+		return movieBool;
+	}
+
+
+
+
+
+	public void setMovieBool(Boolean movieBool) {
+		this.movieBool = movieBool;
+	}
+
+
+
+
+
+	public Boolean getTranspBool() {
+		return transpBool;
+	}
+
+
+
+
+
+	public void setTranspBool(Boolean transpBool) {
+		this.transpBool = transpBool;
+	}
+
+
+
+
+
+	public String getFirstName() {
 		return firstName;
 	}
+    
+    
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+	
+	
 	public String getLastName() {
 		return lastName;
 	}
+	
+	
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	
+	
 	@PrePersist
     protected void onCreate(){
         this.createdAt = new Date();
     }
+	
+	
     public Long getId() {
 		return id;
 	}
@@ -140,12 +280,18 @@ public class User {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	
+	
 	public List<ToDo> getToDos() {
 		return toDos;
 	}
+	
+	
 	public void setToDos(List<ToDo> toDos) {
 		this.toDos = toDos;
 	}
+	
+	
 	@PreUpdate
     protected void onUpdate(){
         this.updatedAt = new Date();
