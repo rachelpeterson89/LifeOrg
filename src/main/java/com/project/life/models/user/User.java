@@ -10,16 +10,20 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
+import javax.persistence.JoinColumn;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import com.project.life.models.note.Note;
+import com.project.life.models.movie.Movie;
 import com.project.life.models.todo.ToDo;
 
 
@@ -57,7 +61,19 @@ public class User {
     
 	@OneToMany(mappedBy="creator",fetch=FetchType.LAZY,cascade = CascadeType.ALL)
     private List<ToDo> toDos;
-	
+    @ManyToMany(cascade = {
+            CascadeType.ALL
+        })
+        @JoinTable(
+            name = "users_movies",
+            joinColumns = {
+                @JoinColumn(name = "user_id")
+            },
+            inverseJoinColumns = {
+                @JoinColumn(name = "movie_id")
+            }
+        )
+	private List<Movie> movies;
 	private Boolean weatherBool;
 	private Boolean toDoBool;
 	private Boolean calendarBool;
