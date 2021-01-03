@@ -23,16 +23,11 @@ public class MovieController {
 
 	@RequestMapping("")
 	public String movie(@ModelAttribute("movie") Movie movie) {
-		return "my_movies.jsp";
+		return "movie/my_movies.jsp";
 	}
 
-	@RequestMapping(value = "/new_movie", method = RequestMethod.POST)
-	public String addMovie(@Valid @ModelAttribute("movie") Movie movie, BindingResult result) {
-		if (result.hasErrors()) {
-			return "my_movies.jsp";
-		} else {
-			MovieService.saveMovie(movie);
-			return "redirect:/movies";
-		}
+	@RequestMapping("/details")
+	public String movieDetails(@ModelAttribute("movie") Movie movie, BindingResult result) {
+			return "movie/movie_details.jsp";
 	}
 }
