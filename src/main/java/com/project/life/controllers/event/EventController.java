@@ -23,13 +23,13 @@ public class EventController {
 	
 	@RequestMapping("")
 	public String eventHome(@ModelAttribute("event") Event event) {
-		return "eventHome.jsp";
+		return "/event/eventHome.jsp";
 	}
 	
 	@RequestMapping(value="/new", method=RequestMethod.POST)
 	public String createEvent(@Valid @ModelAttribute("event") Event event, BindingResult result) {
 		if (result.hasErrors()) {
-			return "eventHome.jsp";
+			return "/event/eventHome.jsp";
 		} else {
 			eServ.createEvent(event);
 			return "redirect:/events";
