@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>My favorite movies</title>
-  <link rel="stylesheet" href="https://bootswatch.com/cyborg/bootstrap.min.css">
+ <link rel="stylesheet" href="/css/bootstrap.min.css">
       <link rel="stylesheet" type="text/css" href="/css/moviestyle.css">
 </head>
 <body>
